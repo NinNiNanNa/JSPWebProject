@@ -191,9 +191,8 @@ public class MemberDAO extends JDBConnect {
 			psmt.setString(7, dto.getZipcode());
 			psmt.setString(8, dto.getAddr1());
 			psmt.setString(9, dto.getAddr2());
-			psmt.setString(10, dto.getName());
 			
-			psmt.setString(11, dto.getId());
+			psmt.setString(10, dto.getId());
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("회원정보수정 중 예외발생");

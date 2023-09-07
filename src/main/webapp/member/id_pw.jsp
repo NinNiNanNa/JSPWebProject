@@ -2,13 +2,53 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 
+<script>
+function idFind(){
+	var fn = document.idFindFrm
+	// 회원이름 입력 확인
+	if(fn.user_name.value==''){
+		alert("회원이름을 입력해주세요.");
+		fn.user_name.focus();
+		return false;
+	}
+	// 이메일 입력 확인
+	if(fn.user_email.value==''){
+		alert("이메일을 입력해주세요.");
+		fn.user_email.focus();
+		return false;
+	}
+	fn.method="post";
+	fn.action="";
+	fn.submit();
+}
 
+function pwFind(){
+	var fn = document.pwFindFrm
+	// 회원이름 입력 확인
+	if(fn.user_id.value==''){
+		alert("아이디를 입력해주세요.");
+		fn.user_id.focus();
+		return false;
+	}
+	// 회원이름 입력 확인
+	if(fn.user_name.value==''){
+		alert("회원이름을 입력해주세요.");
+		fn.user_name.focus();
+		return false;
+	}
+	// 이메일 입력 확인
+	if(fn.user_email.value==''){
+		alert("이메일을 입력해주세요.");
+		fn.user_email.focus();
+		return false;
+	}
+}
+</script>
  <body>
-	<center>
 	<div id="wrap">
 		<%@ include file="../include/top.jsp" %>
 
-		<img src="../images/member/sub_image.jpg" id="main_visual" />
+		<img src="../images/member/sub_image.jpg" id="main_visual" style="margin-left:140px;"/>
 
 		<div class="contents_box">
 			<div class="left_contents">
@@ -21,20 +61,24 @@
 				</div>
 				<div class="idpw_box">
 					<div class="id_box">
-						<ul>
-							<li><input type="text" name="" value="" class="login_input01" /></li>
-							<li><input type="text" name="" value="" class="login_input01" /></li>
+						<form name="idFindFrm">
+						<ul style="left:60px;">
+							<li><input type="text" name="user_name" value="" class="login_input01" /></li>
+							<li><input type="text" name="user_email" value="" class="login_input01" /></li>
 						</ul>
-						<a href=""><img src="../images/member/id_btn01.gif" class="id_btn" /></a>
-						<a href=""><img src="../images/login_btn03.gif" class="id_btn02" /></a>
+						<a href="javascript:idFind();"><img src="../images/member/id_btn01.gif" class="id_btn" style="top:100px;" /></a>
+						<a href="./join01.jsp"><img src="../images/login_btn03.gif" class="id_btn02" /></a>
+						</form>
 					</div>
 					<div class="pw_box">
-						<ul>
-							<li><input type="text" name="" value="" class="login_input01" /></li>
-							<li><input type="text" name="" value="" class="login_input01" /></li>
-							<li><input type="text" name="" value="" class="login_input01" /></li>
+						<form name="pwFindFrm">
+						<ul style="left:60px;">
+							<li><input type="text" name="user_id" value="" class="login_input01" /></li>
+							<li><input type="text" name="user_name" value="" class="login_input01" /></li>
+							<li><input type="text" name="user_email" value="" class="login_input01" /></li>
 						</ul>
-						<a href=""><img src="../images/member/id_btn01.gif" class="pw_btn" /></a>
+						<a href="javascript:pwFind();"><img src="../images/member/id_btn01.gif" class="pw_btn" style="top:105px;" /></a>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -44,6 +88,5 @@
 	
 
 	<%@ include file="../include/footer.jsp" %>
-	</center>
  </body>
 </html>

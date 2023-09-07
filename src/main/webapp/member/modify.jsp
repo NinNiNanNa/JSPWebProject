@@ -69,7 +69,7 @@ function focusMove(thisObj, nextName, inputLen){
     var strLen = thisObj.value.length;
     //제한 길이가 넘어가는지 확인 
     if(strLen >= inputLen){
-        eval('document.joinFrm.'+ nextName).focus();
+        eval('document.modifyFrm.'+ nextName).focus();
     }  
 }
 
@@ -124,7 +124,7 @@ function postOpen(){
             console.log(data.zonecode);
             console.log(data.address);
             
-            let frm = document.joinFrm;
+            let frm = document.modifyFrm;
             frm.zipcode.value = data.zonecode;
             frm.addr1.value = data.address;
             frm.addr2.focus();
@@ -157,7 +157,7 @@ function postOpen(){
 					</colgroup>
 					<tr>
 						<th><img src="../images/join_tit001.gif" /></th>
-						<td><input type="text" name="name" value="<%= uname %>" class="join_input" readonly="readonly" style="outline:0;background:#eee;" /></td>
+						<td><input type="text" name="name" value="<%= uname %>" class="join_input" /></td>
 					</tr>
 					<tr>
 						<th><img src="../images/join_tit002.gif" /></th>

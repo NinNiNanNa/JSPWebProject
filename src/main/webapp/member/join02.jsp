@@ -114,12 +114,12 @@ function emailCheck(){
     const email_checkbox = document.getElementById('open_email');
 	const checked = email_checkbox.checked;
 
-	if(checked == true){
-		email_checkbox.value = "Y"
+	if(!(checked)){
+		email_checkbox.value = "N";
 		console.log(email_checkbox.value);
 	}
-	else if(checked == false){
-		email_checkbox.value = "N";
+	else{
+		email_checkbox.value = "Y"
 		console.log(email_checkbox.value);
 	}
 }
@@ -244,7 +244,7 @@ function postOpen(){
 								<option value="yahoo.com" >yahoo.com</option>
 							</select>
 	 
-							<input type="checkbox" id="open_email" name="open_email" onchange="emailCheck();" value="0">
+							<input type="checkbox" id="open_email" name="open_email" onchange="emailCheck();" value="">
 							<span>이메일 수신동의</span>
 						</td>
 					</tr>

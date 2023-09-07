@@ -7,7 +7,7 @@ String userName = request.getParameter("user_name");
 String userEmail = request.getParameter("user_email");
 
 MemberDAO dao = new MemberDAO();
-String findId = dao.getMemberId(userName, userEmail);
+String findId = dao.memberFindID(userName, userEmail);
 dao.close();
 
 if (findId != null) {

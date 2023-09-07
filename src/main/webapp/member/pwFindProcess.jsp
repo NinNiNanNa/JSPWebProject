@@ -8,7 +8,7 @@ String userName = request.getParameter("user_name");
 String userEmail = request.getParameter("user_email");
 
 MemberDAO dao = new MemberDAO();
-String findPw = dao.getMemberPw(userId, userName, userEmail);
+String findPw = dao.memberFindPW(userId, userName, userEmail);
 dao.close();
 
 if (findPw != null) {
