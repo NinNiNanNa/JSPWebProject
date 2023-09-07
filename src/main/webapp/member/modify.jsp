@@ -238,7 +238,7 @@ function postOpen(){
 
 				<p style="text-align:center; margin-bottom:20px">
 					<input type="image" src="../images/btn01.gif" alt="확인">&nbsp;&nbsp;
-					<a href="join01.jsp"><img src="../images/btn02.gif" alt="취소" /></a>
+					<a href="../main/main.do"><img src="../images/btn02.gif" alt="취소" /></a>
 				</p>
 				</form>
 				

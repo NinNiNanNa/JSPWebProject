@@ -90,52 +90,51 @@ public class MemberDAO extends JDBConnect {
 		return dto;
 	}
 	
-	// 회원 아이디 찾기를 위한 메서드 정의
-	public String memberFindID(String uname, String uemail) {
-		String id = null;
+	// 아이디/비번 찾기를 위한 메서드 정의
+	public MemberDTO memberFindIdPW(String uid, String uname, String uemail) {
+		MemberDTO dto = new MemberDTO();
+		String query = null;
 		
 		try {
-			String query = " SELECT id FROM members WHERE name=? AND email=? ";
+			if(uid != null) {
+				query = "SELECT * FROM members WHERE id=? AND name=? AND email=?";
+			}
+			else {
+				query = "SELECT * FROM members WHERE name=? AND email=?";
+			}
 			
 			psmt = con.prepareStatement(query);
 			
-			psmt.setString(1, uname);
-			psmt.setString(2, uemail);
-			rs = psmt.executeQuery();
-			
-			if (rs.next()) {
-				id = rs.getString("id");
+			if(uid != null) {
+				psmt.setString(1, uid);
+				psmt.setString(2, uname);
+				psmt.setString(3, uemail);
 			}
-		} catch (Exception e) {
-			System.out.println("회원아이디 찾기 중 예외발생");
+			else {
+				psmt.setString(1, uname);
+				psmt.setString(2, uemail);
+			}
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto.setId(rs.getString(1));
+				dto.setPass(rs.getString(2));
+				dto.setName(rs.getString(3));
+				dto.setTel(rs.getString(4));
+				dto.setMobile(rs.getString(5));
+				dto.setEmail(rs.getString(6));
+				dto.setOpen_email(rs.getString(7));
+				dto.setZipcode(rs.getString(8));
+				dto.setAddr1(rs.getString(9));
+				dto.setAddr2(rs.getString(10));
+			}
+		}
+		catch(Exception e) {
+			System.out.println("아이디,비번찾기 중 예외발생");
 			e.printStackTrace();
 		}
 		
-		return id;
-	}
-	
-	// 회원 비밀번호 찾기를 위한 메서드 정의
-	public String memberFindPW(String uid, String uname, String uemail) {
-		String pw = null;
-		try {
-			String query = " SELECT pass FROM members WHERE id=? AND name=? AND email=? ";
-			
-			psmt = con.prepareStatement(query);
-			
-			psmt.setString(1, uid);
-			psmt.setString(2, uname);
-			psmt.setString(3, uemail);
-			rs = psmt.executeQuery();
-			
-			if (rs.next()) {
-				pw = rs.getString("pass");
-			}
-		} catch (Exception e) {
-			System.out.println("회원비밀번호 찾기 중 예외발생");
-			e.printStackTrace();
-		}
-		
-		return pw;
+		return dto;
 	}
 	
 	// 회원정보 불러오기 위한 메서드 정의(회원정보수정에 필요)
