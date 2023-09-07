@@ -33,13 +33,10 @@ function loginValidate(frm){
 					<img src="../images/login_title.gif" alt="인사말" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;멤버쉽&nbsp;>&nbsp;로그인<p>
 				</div>
-			<%
-			/*
-			session영역에 해당 속성값이 있는지 확인한다.
-			즉 session영역에 데이터가 없다면 로그아웃 상태이므로 로그인 폼을 웹브라우저에 출력한다.
-			*/
-			if (session.getAttribute("UserId") == null) { 
-			%>
+<%
+// 로그아웃 상태에서는 로그인폼을 출력
+if (session.getAttribute("UserId") == null) { 
+%>
 				<div class="login_box01">
 					<img src="../images/login_tit.gif" style="margin-bottom:30px;" />
 					<!-- 회원정보는 보안이 필요하므로 반드시 post방식으로 전송해야한다. -->
@@ -55,10 +52,10 @@ function loginValidate(frm){
 					<a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>&nbsp;
 					<a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a>
 				</p>
-			<%
-			} else {  
-				// 로그인이 된 상태에서는 회원의 이름과 회원정보수정,로그아웃 버튼을 출력
-			%>
+<%
+} else {  
+// 로그인이 된 상태에서는 회원의 이름과 회원정보수정,로그아웃 버튼을 출력
+%>
 				<!-- 로그인 후 -->
 				<div class="login_box01">
 					<p style="font-size:14px;line-height:200%;padding:40px 0px 20px 10px"><span style="font-weight:bold; color:#333;">${ UserName }님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
@@ -67,9 +64,9 @@ function loginValidate(frm){
 					<a href=""><img src="../images/login_btn04.gif" /></a>
 					<a href="logout.jsp"><img src="../images/login_btn05.gif" /></a>
 				</p>
-			<%
-			}
-			%>
+<%
+}
+%>
 			</div>
 		</div>
 		<%@ include file="../include/quick.jsp" %>

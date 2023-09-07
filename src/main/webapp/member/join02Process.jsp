@@ -35,7 +35,7 @@ dto.setAddr2(addr2);
 
 // DAO객체 생성 및 insert처리
 MemberDAO dao = new MemberDAO();
-int result = dao.insertMember(dto);
+int result = dao.memberJoin(dto);
 
 if(result == 1){
 	JSFunction.alertLocation("회원가입이 되었습니다.", "../main/main.jsp", out);

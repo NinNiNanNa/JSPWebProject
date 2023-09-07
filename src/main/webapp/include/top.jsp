@@ -1,16 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div id="top" style="border:0px solid #000;"> 
-	<a href="../main/main.jsp"><img src="../images/logo.gif" alt="마포구립장애인 직업재활센터" id="top_logo" /></a>
+	<a href="../main/main.do"><img src="../images/logo.gif" alt="마포구립장애인 직업재활센터" id="top_logo" /></a>
 	<ul id="lnb">
+<%
+// 로그아웃 상태에서는 LOGIN, JOIN을 출력
+if (session.getAttribute("UserId") == null) { 
+%>
 		<!-- 로그인전 -->
 		<li><a href="../member/login.jsp"><img src="../images/lnb01.gif" alt="LOGIN" /></a></li>
 		<li><a href="../member/join01.jsp"><img src="../images/lnb02.gif" alt="JOIN" /></a></li>
-		
+<%
+} else {  
+// 로그인이 된 상태에서는 LOGOUT, MODIFY을 출력
+%>
 		<!-- 로그인후 -->
-		<!-- <li><a href="../center/sub07.jsp"><img src="../images/lnb05.gif" alt="LOG OUT" /></a></li>
-		<li><a href="../center/sub07.jsp"><img src="../images/lnb06.gif" alt="MODIFY" /></a></li> -->
-		
+		<li><a href="../member/logout.jsp"><img src="../images/lnb05.gif" alt="LOGOUT" /></a></li>
+		<li><a href="../member/modify.jsp"><img src="../images/lnb06.gif" alt="MODIFY" /></a></li>
+<%
+}
+%>
 		<li><a href="../member/sitemap.jsp"><img src="../images/lnb03.gif" alt="SITEMAP" /></a></li>
 		<li><a href="../center/sub06.jsp"><img src="../images/lnb04.gif" alt="CONTACT US" /></a></li>
 		

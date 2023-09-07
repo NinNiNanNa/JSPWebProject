@@ -35,7 +35,7 @@ if(dto.getId() != null){// 로그인 성공
 	}
 	
 	// 로그인 페이지로 '이동' 한다.
-	response.sendRedirect("../main/main.jsp");
+	response.sendRedirect("../main/main.do");
 	
 }
 else{//로그인 실패

@@ -56,7 +56,7 @@ function loginValidate(frm){
 				<p class="main_title" style="border:0px; margin-bottom:0px;"><img src="../images/main_title01.gif" alt="로그인 LOGIN" /></p>
 				<div class="login_box">
 <%
-//로그아웃 상태에서는 로그인폼을 출력한다. 
+// 로그아웃 상태에서는 로그인폼을 출력
 if(session.getAttribute("UserId")==null) {
 %>
 					<!-- 회원정보는 보안이 필요하므로 반드시 post방식으로 전송해야한다. -->
@@ -85,7 +85,7 @@ if(session.getAttribute("UserId")==null) {
 					</form>
 <%
 } else {  
-	// 로그인이 된 상태에서는 회원의 이름과 회원정보수정,로그아웃 버튼을 출력
+// 로그인이 된 상태에서는 회원의 이름과 회원정보수정,로그아웃 버튼을 출력
 %>
 					<!-- 로그인 후 -->
 					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;">${ UserName }님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
