@@ -76,7 +76,7 @@
 .join_box span{color:#a59683}
 
 /* 내가 추가한 스타일(아이디/비번 찾기 결과화면) */
-.idpw_result {display:none; position:absolute; top:0; left:0; width:100%; padding:40px 0; background:#fff; border:1px solid #ddd; border-radius:10px; text-align:center;}
+.idpw_result {position:absolute; top:200px; left:0; width:100%; padding:40px 0; background:#fff; border:1px solid #ddd; border-radius:10px; text-align:center;}
 .idpw_result h2 {font-size:25px;font-weight:bold;color:#C73C18;}
 .idpw_result p {padding:30px 0;font-size:15px;}
 .idpw_result p span {font-size:18px;font-weight:bold;}
