@@ -76,10 +76,33 @@
 .join_box span{color:#a59683}
 
 /* 내가 추가한 스타일(아이디/비번 찾기 결과화면) */
-.idpw_result {position:absolute; top:200px; left:0; width:100%; padding:40px 0; background:#fff; border:1px solid #ddd; border-radius:10px; text-align:center;}
+.idpw_result {display:none; position:absolute; top:0; left:0; width:100%; padding:40px 0; background:#fff; border:1px solid #ddd; border-radius:10px; text-align:center;}
 .idpw_result h2 {font-size:25px;font-weight:bold;color:#C73C18;}
 .idpw_result p {padding:30px 0;font-size:15px;}
 .idpw_result p span {font-size:18px;font-weight:bold;}
+.idpw_result .closeBtn {cursor:pointer;}
+
+
+/*space - 검색(게시판공통)*/
+.search_wrap {width:100%; text-align:right; padding-bottom:20px;}
+.select_wrap {display:inline-block; margin-right:5px;}
+.select_wrap select {padding:8px 10px; outline:0; border-radius:5px;}
+.input_wrap {display:inline-block;}
+.input_wrap input[type='text'] {display:inline-block; border:1px solid #bbb; border-radius:5px 0 0 5px; outline:0; padding:8px 20px; width:250px;}
+.input_wrap .searchBtn_wrap {display:inline-block; border:1px solid #bbb; border-radius:0 5px 5px 0; padding:7px; margin-left:-5px; cursor:pointer;}
+.input_wrap .searchBtn_wrap input[type='image'] {width:20px;}
+/*space - 페이지&버튼(게시판공통)*/
+.bottom_wrap {position:relative;}
+.bottom_wrap .pagenation_wrap {width:100%;}
+.bottom_wrap .pagenation_wrap ul {width:100%; text-align:center;}
+.bottom_wrap .pagenation_wrap ul li {display:inline-block; margin:0 2px;}
+.bottom_wrap .pagenation_wrap ul li a {display:block; width:30px; height:30px; font-weight:bold; color:#aaa; line-height:30px; border:1px solid #bbb; border-radius:4px; transition:all .3s; text-decoration:none;}
+.bottom_wrap .pagenation_wrap ul li a:hover {color:#fff; background:#C73C18; border:1px solid #C73C18;}
+.bottom_wrap .pagenation_wrap ul li a.active {color:#fff; background:#C73C18; border:1px solid #C73C18;}
+.bottom_wrap .button_wrap {position:absolute; top:0; right:0;}
+.groupbutton_wrap { width:100%; text-align:center; }
+
+/*space - notice*/
 
 
 

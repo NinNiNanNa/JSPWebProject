@@ -1,6 +1,7 @@
 <%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%
 //페이지가 실행되면 loginId라는 쿠키를 읽어온다.
 String idSave = CookieManager.readCookie(request, "idSave");
@@ -74,7 +75,7 @@ if(session.getAttribute("UserId")==null) {
 						</tr>
 						<tr>
 							<th><img src="../images/login_tit02.gif" alt="패스워드" /></th>
-							<td><input type="text" name="user_pw" tabindex="2" value="" class="login_input" /></td>
+							<td><input type="password" name="user_pw" tabindex="2" value="" class="login_input" /></td>
 						</tr>
 					</table>
 					<p>
@@ -100,20 +101,22 @@ if(session.getAttribute("UserId")==null) {
 			</div>
 			<div class="main_con_center">
 				<p class="main_title"><img src="../images/main_title02.gif" alt="공지사항 NOTICE" /><a href="/space/sub01.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<!-- 공지사항 게시물4개 -->
 				<ul class="main_board_list">
-					<li><p><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></p></li>
-					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
+				<c:forEach items="${ notice }" var="row">
+					<li><p><a href="../space/listBoard_view.jsp?boardType=notice&idx=${row.idx }">${row.title }</a>
+						<span>${row.postdate }</span></p></li>
+				</c:forEach>	
 				</ul>
 			</div>
 			<div class="main_con_right">
 				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="/space/sub03.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<!-- 자유게시판 게시물4개 -->
 				<ul class="main_board_list">
-					<li><p><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></p></li>
-					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
-					<li><a href="">마포 구립 장애인 직업재활센터 홈페이지</a><span>2012.01.26</span></li>
+				<c:forEach items="${ free }" var="row">
+					<li><p><a href="../space/listBoard_view.jsp?boardType=free&idx=${row.idx }">${row.title }</a>
+						<span>${row.postdate }</span></p></li>
+				</c:forEach>	
 				</ul>
 			</div>
 		</div>

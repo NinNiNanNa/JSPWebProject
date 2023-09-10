@@ -11,8 +11,9 @@ public class MemberDAO extends JDBConnect {
 		
 		try {
 			String query = "INSERT INTO members "
+						 + " (id, pass, name, tel, mobile, email, open_email, zipcode, addr1, addr2) "
 						 + " VALUES "
-						 + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+						 + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			psmt = con.prepareStatement(query);
 			
@@ -26,6 +27,7 @@ public class MemberDAO extends JDBConnect {
 			psmt.setString(8, dto.getZipcode());
 			psmt.setString(9, dto.getAddr1());
 			psmt.setString(10, dto.getAddr2());
+			
 			
 			result = psmt.executeUpdate();
 		}
@@ -67,7 +69,7 @@ public class MemberDAO extends JDBConnect {
 		MemberDTO dto = new MemberDTO();
 		
 		try {
-			String query = "SELECT id, pass, name, email FROM members WHERE id=? AND pass=?";
+			String query = "SELECT id, pass, name, email, account FROM members WHERE id=? AND pass=?";
 			
 			psmt = con.prepareStatement(query);
 			
@@ -80,6 +82,7 @@ public class MemberDAO extends JDBConnect {
 				dto.setPass(rs.getString(2));
 				dto.setName(rs.getString(3));
 				dto.setEmail(rs.getString(4));
+				dto.setAccount(rs.getString(5));
 			}
 		}
 		catch(Exception e) {

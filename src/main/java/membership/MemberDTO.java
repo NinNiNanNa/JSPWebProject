@@ -14,6 +14,7 @@ public class MemberDTO {
 	private String addr1;			// 기본주소
 	private String addr2;			// 상세주소
 	private java.sql.Date regidate;	// 가입일
+	private String account;			// 계정권한(관리자VS사용자)
 	
 	// getter,setter 정의
 	public String getId() {
@@ -81,6 +82,12 @@ public class MemberDTO {
 	}
 	public void setRegidate(java.sql.Date regidate) {
 		this.regidate = regidate;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	
 }

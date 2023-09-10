@@ -24,6 +24,7 @@ if(dto.getId() != null){// 로그인 성공
 	session.setAttribute("UserId", dto.getId());
 	session.setAttribute("UserName", dto.getName());
 	session.setAttribute("UserEmail", dto.getEmail());
+	session.setAttribute("Account", dto.getAccount());
 	
 	if (save_check!=null && save_check.equals("Y")){
 		// 쿠키생성
@@ -34,8 +35,14 @@ if(dto.getId() != null){// 로그인 성공
 		CookieManager.deleteCookie(response, "idSave");
 	}
 	
-	// 로그인 페이지로 '이동' 한다.
-	response.sendRedirect("../main/main.do");
+	if(dto.getAccount().equals("admin")){	// 계정권한이 관리자이면
+		// 관리자 페이지로 '이동' 한다.
+				response.sendRedirect("../admin/adminMain.do");
+	}
+	else {	// 계정권한이 사용자이면
+		// 로그인 페이지로 '이동' 한다.
+		response.sendRedirect("../main/main.do");
+	}
 	
 }
 else{//로그인 실패
