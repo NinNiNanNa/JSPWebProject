@@ -1,12 +1,12 @@
 <%@page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ include file="./TopTitleCommon.jsp" %>
-<%@ include file="./ListCommon.jsp" %>
 <%
+String boardType = request.getParameter("boardType");
 //System.out.println("(listBoard_list.jsp)boardType=" + boardType);
+//System.out.println("나와라 주소! : " + request.getRequestURI());
 %>
+<%@ include file="./ListCommon.jsp" %>
 <%@ include file="../include/global_head.jsp" %>
 
 
@@ -22,8 +22,19 @@
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-					<img src="../images/space/<%= imgPath %>" alt="<%= secondTitle %>" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;<%= secondTitle %><p>
+				
+<% if(boardType.equals("notice")) { %>				
+					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
+<% } else if(boardType.equals("free")) { %>
+					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
+<% } else if(boardType.equals("photo")) { %>
+					<img src="../images/space/sub04_title.gif" alt="사진게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;사진게시판<p>
+<% } %>	
+					
+					
 				</div>
 				<div>
 	
@@ -54,7 +65,7 @@
 								<col width="120px"/>
 								<col width="120px"/>
 								<col width="80px"/>
-<% if(boardType.equals("info")) { %>
+<% if(boardType.equals("photo")) { %>
 								<col width="50px"/>
 <% } %>
 							</colgroup>
@@ -65,7 +76,7 @@
 									<th class="text-center">작성자</th>
 									<th class="text-center">작성일</th>
 									<th class="text-center">조회수</th>
-<% if(boardType.equals("info")) { %>	
+<% if(boardType.equals("photo")) { %>	
 									<th class="text-center">첨부</th>	
 <% } %>
 								</tr>
@@ -99,7 +110,7 @@ if (boardLists.isEmpty()) {
 									<td class="text-center"><%= dto.getId() %></td>
 									<td class="text-center"><%= dto.getPostdate() %></td>
 									<td class="text-center"><%= dto.getVisitcount() %></td>
-<% if (boardType.equals("info")) { %>
+<% if (dto.getOfile().isEmpty()) { %>
 									<td class="text-center"><a href="">[Down]</a></td>
 <% } %>
 								</tr>
@@ -134,10 +145,7 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equa
 							<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
 						</div>
 <%
-} 
-%>
-<%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!= null && boardType.equals("free")){
+}else if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!= null && boardType.equals("free")){
 %>
 	<div class="button_wrap">
 		<!-- 각종 버튼 부분 -->
@@ -145,16 +153,6 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!= nu
 	</div>
 <%
 }
-%>
-<%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin") && boardType.equals("info")){
-%>
-						<div class="button_wrap">
-							<!-- 각종 버튼 부분 -->
-							<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
-						</div>
-<%
-} 
 %>
 						
 					</div>

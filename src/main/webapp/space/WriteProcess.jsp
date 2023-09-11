@@ -1,3 +1,11 @@
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.FileOutputStream"%>
+<%@page import="java.io.BufferedOutputStream"%>
+<%@page import="java.io.BufferedInputStream"%>
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.List"%>
+<%@page import="java.io.File"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="board.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,16 +31,8 @@ dto.setId(session.getAttribute("UserId").toString());
 
 BoardDAO dao = new BoardDAO();
 
-//int isResult = dao.insertWrite(dto);
-int isResult = 0;
-for(int i=1 ; i<=50 ; i++){
-	
-	//만약 제목을 "안녕하세요"로 입력했다면...
-	//"..세요1", "..세요2" 와 같이 설정된다.  
-	
-	dto.setTitle(title + i);
-	isResult = dao.insertWrite(dto);
-}
+int isResult = dao.insertWrite(dto);
+
 dao.close();
 
 if (isResult == 1){	// 글쓰기에 성공하면

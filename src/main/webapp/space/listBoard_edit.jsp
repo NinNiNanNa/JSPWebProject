@@ -4,8 +4,8 @@
     pageEncoding="UTF-8"%>
 <!-- JSP최상단에 인클루드 하여 로그인 정보가 없다면 즉시 로그인 페이지로 이동시킨다. -->
 <%@ include file="../include/isLogin.jsp"%>
-<%// 게시판 유형 파라미터 받기
-String boardType = request.getParameter("boardType");
+<%@ include file="./TopTitleCommon.jsp" %>
+<%
 //System.out.println("(listBoard_edit.jsp)boardType:" + boardType);
 // 수정할 게시물의 일련번호를 파라미터로 받아온다.
 String idx = request.getParameter("idx");
@@ -57,16 +57,8 @@ function validateForm(form) {
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-				
-<% if(boardType.equals("notice")) { %>				
-					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
-<% } else if(boardType.equals("free")) { %>
-					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
-<% } %>	
-					
-					
+					<img src="../images/space/<%= imgPath %>" alt="<%= secondTitle %>" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;<%= secondTitle %><p>
 				</div>
 				<div>
 

@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <!-- JSP최상단에 인클루드 하여 로그인 정보가 없다면 즉시 로그인 페이지로 이동시킨다. -->
 <%@ include file="../include/isLogin.jsp"%>
+<%@ include file="./TopTitleCommon.jsp" %>
 <%
-String boardType = request.getParameter("boardType");
 System.out.println("(listBoard_write.jsp)boardType=" + boardType);
-%>
-    
+%> 
 <%@ include file="../include/global_head.jsp" %>
 
 <script type="text/javascript">
@@ -36,20 +35,12 @@ function validateForm(form) {
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-				
-<% if(boardType.equals("notice")) { %>				
-					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
-<% } else if(boardType.equals("free")) { %>
-					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
-<% } %>	
-					
-					
+					<img src="../images/space/<%= imgPath %>" alt="<%= secondTitle %>" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;<%= secondTitle %><p>
 				</div>
 				<div>
 
-				<form  name="writeFrm" method="post" action="./WriteProcess.jsp" onsubmit="return validateForm(this);">
+				<form  name="writeFrm" method="post" action="./WriteProcess.jsp" enctype="multipart/form-data" onsubmit="return validateForm(this);">
 				<input type="hidden" name="boardType" value="<%= boardType %>" />
 				<table class="table table-bordered">
 				<colgroup>
@@ -76,6 +67,15 @@ function validateForm(form) {
 							<textarea rows="10" name="content" class="form-control"></textarea>
 						</td>
 					</tr>
+<% if (boardType.equals("info")) { %>
+					<tr>
+						<th class="text-center" 
+							style="vertical-align:middle;">첨부파일</th>
+						<td>
+							<input type="file" name="ofile" multiple="true"><br />
+						</td>
+					</tr>
+<% } %>
 				</tbody>
 				</table>
 				

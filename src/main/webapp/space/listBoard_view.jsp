@@ -2,11 +2,11 @@
 <%@page import="board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-// 게시판 유형 파라미터 받기
-String boardType = request.getParameter("boardType");
-//System.out.println("(listBoard_view.jsp)boardType=" + boardType);
+    
+<%@ include file="./TopTitleCommon.jsp" %>
 
+<%
+//System.out.println("(listBoard_view.jsp)boardType=" + boardType);
 /*
 목록에서 제목을 클릭하면 게시물의 일련번호를 ?num=99와 같이 받아온다.
 게시물 인출을 위해 파라미터를 받아온다.
@@ -53,16 +53,8 @@ function deletePost() {
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-				
-<% if(boardType.equals("notice")) { %>				
-					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
-<% } else if(boardType.equals("free")) { %>
-					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
-<% } %>	
-					
-					
+					<img src="../images/space/<%= imgPath %>" alt="<%= secondTitle %>" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;<%= secondTitle %><p>
 				</div>
 				<div>
 
@@ -97,6 +89,10 @@ function deletePost() {
 							웹 브라우저에 출력시에는 <br>태그로 변경해야한다. -->
 			                <%= dto.getContent() %>
 						</td>
+					</tr>
+					<tr>
+						<th class="text-center" style="vertical-align:middle;">첨부파일</th>
+						<td colspan="3"><%= dto.getOfile() %></td>
 					</tr>
 				</tbody>
 				</table>
