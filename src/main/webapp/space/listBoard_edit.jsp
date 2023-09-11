@@ -62,10 +62,16 @@ function validateForm(form) {
 				</div>
 				<div>
 
-				<form  name="writeFrm" method="post" action="./EditeProcess.jsp" onsubmit="return validateForm(this);">
+				<form  name="writeFrm" method="post" action="./EditeProcess.jsp" enctype="multipart/form-data" onsubmit="return validateForm(this);">
 				<!-- 게시판 유형을 구분해줌 -->
 				<input type="hidden" name="boardType" value="<%= boardType %>" />
 				<input type="hidden" name="idx" value="<%= dto.getIdx() %>" />
+				<!-- 
+				기존 등록된 파일명.
+				만약 수정페이지에서 첨부파일을 변경하지 않는다면 여기에 등록된 파일명을 사용해서 update할 예정이다.
+				 -->
+				<input type="hidden" name="prevOfile" value="<%= dto.getOfile() %>" />
+				<input type="hidden" name="prevSfile" value="<%= dto.getSfile() %>" />
 				<table class="table table-bordered">
 				<colgroup>
 					<col width="20%"/>
@@ -88,9 +94,18 @@ function validateForm(form) {
 						<th class="text-center" 
 							style="vertical-align:middle;">내용</th>
 						<td>
-							<textarea rows="10" name="content" class="form-control"><%= dto.getContent() %></textarea>
+							<textarea rows="10" name="content" class="form-control"><%= dto.getContent().replace("<br/>", "\n") %></textarea>
 						</td>
 					</tr>
+<% if (boardType.equals("info")) { %>
+					<tr>
+						<th class="text-center" 
+							style="vertical-align:middle;">첨부파일</th>
+						<td>
+							<input type="file" name="ofile" multiple="true"><br />
+						</td>
+					</tr>
+<% } %>
 				</tbody>
 				</table>
 				

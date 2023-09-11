@@ -99,8 +99,10 @@ if (boardLists.isEmpty()) {
 									<td class="text-center"><%= dto.getId() %></td>
 									<td class="text-center"><%= dto.getPostdate() %></td>
 									<td class="text-center"><%= dto.getVisitcount() %></td>
-<% if (boardType.equals("info")) { %>
-									<td class="text-center"><a href="">[Down]</a></td>
+<% if (boardType.equals("info") && dto.getOfile()!=null) { %>
+									<td class="text-center"><a href="./DownloadProcess.jsp?ofile=<%= dto.getOfile() %>&sfile=<%= dto.getSfile() %>&idx=<%= dto.getIdx() %>"><img width="20" src="../images/space/download.png" alt="" /></a></td>
+<% } else { %>
+									<td class="text-center"></td>
 <% } %>
 								</tr>
 <%
@@ -127,7 +129,7 @@ if (boardLists.isEmpty()) {
 							</ul>	
 						</div>
 <%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin") && boardType.equals("notice")){
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin")){
 %>
 						<div class="button_wrap">
 							<!-- 각종 버튼 부분 -->
@@ -137,7 +139,7 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equa
 } 
 %>
 <%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!= null && boardType.equals("free")){
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("free")){
 %>
 	<div class="button_wrap">
 		<!-- 각종 버튼 부분 -->
@@ -145,16 +147,6 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!= nu
 	</div>
 <%
 }
-%>
-<%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin") && boardType.equals("info")){
-%>
-						<div class="button_wrap">
-							<!-- 각종 버튼 부분 -->
-							<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
-						</div>
-<%
-} 
 %>
 						
 					</div>

@@ -87,17 +87,24 @@ function deletePost() {
 						<td colspan="5" style="height:300px;">
 							<!-- 입력시 줄바꿈을 위한 엔터는 \r\n으로 입력되므로
 							웹 브라우저에 출력시에는 <br>태그로 변경해야한다. -->
-			                <%= dto.getContent() %>
+			                <%= dto.getContent().replace("\r\n", "<br/>") %>
 						</td>
 					</tr>
+<% if (boardType.equals("info") && dto.getOfile()!=null) { %>
 					<tr>
 						<th class="text-center" style="vertical-align:middle;">첨부파일</th>
-						<td colspan="3"><%= dto.getOfile() %></td>
+						<td colspan="3">
+							<%= dto.getOfile() %>
+							<a href="./DownloadProcess.jsp?ofile=<%= dto.getOfile() %>&sfile=<%= dto.getSfile() %>&idx=<%= dto.getIdx() %>">[다운로드]</a>
+						</td>
+				        <th class="text-center" style="vertical-align:middle;">다운로드수</th>
+				        <td class="text-center" ><%= dto.getDowncount() %></td>
 					</tr>
+<% } %>
 				</tbody>
 				</table>
 <%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin") && boardType.equals("notice")){
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin")){
 %>
 				
 				<div class="groupbutton_wrap" style="">
@@ -107,7 +114,28 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equa
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
 				</div>
 <%
-} else if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!=null && boardType.equals("free")){
+}
+%>
+
+<%
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("notice")){
+%>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
+				</div>
+<%
+}
+%>
+<%
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("info")){
+%>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
+				</div>
+<%
+}else if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("free")){
 %>
 				<div class="groupbutton_wrap" style="">
 					<!-- 각종 버튼 부분 -->
@@ -115,10 +143,14 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equa
 					<button type="button" class="btn btn-outline-danger btn-sm" onclick="deletePost();">삭제하기</button>	
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
 				</div>
-<%	
-} else {
+<%
+}
+%>
+<%
+if(session.getAttribute("UserId")== null){
 %>
 				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
 				</div>
 <%

@@ -1,3 +1,4 @@
+<%@page import="utils.FileUtil"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="board.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -31,6 +32,8 @@ if (sessionId.equals(dto.getId())){
 	dao.close();
 	
 	if (delResult == 1){
+		String saveFileName = dto.getSfile();
+		FileUtil.deleteFile(request, "/Uploads", saveFileName);
 		// 게시물이 삭제되면 목록으로 이동한다.
 		JSFunction.alertLocation("게시물 삭제가 완료되었습니다.", "./listBoard_list.jsp?boardType="+dto.getBoardType(), out);
 	}

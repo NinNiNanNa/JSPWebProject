@@ -101,8 +101,8 @@ public class BoardDAO extends JDBConnect {
 	public int insertWrite(BoardDTO dto) {
 		int result = 0;
 		
-		String query = "INSERT INTO board (idx, id, title, content, visitcount, boardtype, ofile, sfile) "
-					 + "    VALUES (seq_board_num.nextval, ?, ?, ?, 0, ?, ?, ?)";
+		String query = "INSERT INTO board (idx, id, title, content, ofile, sfile, boardtype) "
+					 + "    VALUES (seq_board_num.nextval, ?, ?, ?, ?, ?, ?)";
 
 		//System.out.println("게시물 입력 쿼리문: " + query);
 		
@@ -112,9 +112,9 @@ public class BoardDAO extends JDBConnect {
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getTitle());
 			psmt.setString(3, dto.getContent());
-			psmt.setString(4, dto.getBoardType());
-			psmt.setString(5, dto.getOfile());
-			psmt.setString(6, dto.getSfile());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getBoardType());
 			
 			result = psmt.executeUpdate();
 			
@@ -143,7 +143,7 @@ public class BoardDAO extends JDBConnect {
 				dto.setIdx(rs.getString(1));
 				dto.setId(rs.getString(2));
 				dto.setTitle(rs.getString(3));
-				dto.setContent(rs.getString(4).replace("\r\n", "<br/>"));
+				dto.setContent(rs.getString(4));
 				dto.setPostdate(rs.getDate(5));
 				dto.setOfile(rs.getString(6));
 				dto.setSfile(rs.getString(7));
@@ -175,6 +175,21 @@ public class BoardDAO extends JDBConnect {
 		}
 	}
 	
+	// 다운로드 횟수를 증가시키기 위한 메서드 정의
+	public void downCountPlus(String idx) {
+		String query = "UPDATE board SET downcount=downcount+1 WHERE idx=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			psmt.executeQuery();
+			
+		} catch (Exception e) {
+			System.out.println("첨부파일 다운로드 횟수 증가 중 예외발생");
+			e.printStackTrace();
+		}
+	}
+	
 	// 게시물 수정하기 위한 메서드 정의
 	public int updatePost(BoardDTO dto) {
 		int result = 0;
@@ -201,25 +216,24 @@ public class BoardDAO extends JDBConnect {
 	}
 	
 	// 게시물 삭제하기 위한 메서드 정의
-		public int deletePost(BoardDTO dto) {
-			int result = 0;
+	public int deletePost(BoardDTO dto) {
+		int result = 0;
+		
+		// 인파라미터가 있는 delete쿼리문 작성
+		String query = "DELETE FROM board WHERE idx=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getIdx());
 			
-			try {
-				// 인파라미터가 있는 delete쿼리문 작성
-				String query = "DELETE FROM board WHERE idx=?";
-				
-				psmt = con.prepareStatement(query);
-				psmt.setString(1, dto.getIdx());
-				
-				result = psmt.executeUpdate();
-			}
-			catch (Exception e) {
-				System.out.println("게시물 삭제 중 예외 발생");
-				e.printStackTrace();
-			}
-			
-			return result;
+			result = psmt.executeUpdate();
 		}
-	
+		catch (Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 }
