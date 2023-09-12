@@ -67,7 +67,7 @@ function validateForm(form) {
 							<textarea rows="10" name="content" class="form-control"></textarea>
 						</td>
 					</tr>
-<% if (boardType.equals("info")) { %>
+<% if (boardType.equals("photo") || boardType.equals("info")) { %>
 					<tr>
 						<th class="text-center" 
 							style="vertical-align:middle;">첨부파일</th>
@@ -78,14 +78,28 @@ function validateForm(form) {
 <% } %>
 				</tbody>
 				</table>
-				
+
+<%
+if(session.getAttribute("UserId")!= null && boardType.equals("photo")){
+%>
 				<div class="groupbutton_wrap" style="">
 					<!-- 각종 버튼 부분 -->
-					
+					<button type="submit" class="btn btn-outline-success btn-sm">전송하기</button>
+					<button type="reset" class="btn btn-outline-danger btn-sm">Reset</button>
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='photoBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
+				</div>
+<% 
+} else {
+%>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
 					<button type="submit" class="btn btn-outline-success btn-sm">전송하기</button>
 					<button type="reset" class="btn btn-outline-danger btn-sm">Reset</button>
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
 				</div>
+<%
+}
+%>
 				</form> 
 
 				</div>

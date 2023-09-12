@@ -82,7 +82,7 @@
 .idpw_result p span {font-size:18px;font-weight:bold;}
 .idpw_result .closeBtn {cursor:pointer;}
 
-
+.clearfix:after { content:''; display:block; clear:both; }
 /*space - 검색(게시판공통)*/
 .search_wrap {width:100%; text-align:right; padding-bottom:20px;}
 .select_wrap {display:inline-block; margin-right:5px;}

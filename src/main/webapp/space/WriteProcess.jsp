@@ -60,7 +60,11 @@ int isResult = dao.insertWrite(dto);
 dao.close();
 
 if (isResult == 1){	// 글쓰기에 성공하면
-	JSFunction.alertLocation("게시물을 등록하였습니다.", "./listBoard_list.jsp?boardType="+boardType, out);
+	if(boardType.equals("photo")){
+		JSFunction.alertLocation("게시물을 등록하였습니다.", "./photoBoard_list.jsp?boardType="+boardType, out);
+	} else {
+		JSFunction.alertLocation("게시물을 등록하였습니다.", "./listBoard_list.jsp?boardType="+boardType, out);
+	}
 }
 else {	// 글쓰기에 실패하면
 	JSFunction.alertBack("게시물 작성에 실패하였습니다.", out);

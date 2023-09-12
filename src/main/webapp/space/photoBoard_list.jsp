@@ -1,12 +1,12 @@
 <%@page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String boardType = request.getParameter("boardType");
-//System.out.println("(listBoard_list.jsp)boardType=" + boardType);
-//System.out.println("나와라 주소! : " + request.getRequestURI());
-%>
+      
+<%@ include file="./TopTitleCommon.jsp" %>
 <%@ include file="./ListCommon.jsp" %>
+<%
+//System.out.println("(listBoard_list.jsp)boardType=" + boardType);
+%>
 <%@ include file="../include/global_head.jsp" %>
 
 
@@ -22,19 +22,8 @@ String boardType = request.getParameter("boardType");
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-				
-<% if(boardType.equals("notice")) { %>				
-					<img src="../images/space/sub01_title.gif" alt="공지사항" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;공지사항<p>
-<% } else if(boardType.equals("free")) { %>
-					<img src="../images/space/sub03_title.gif" alt="자유게시판" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;자유게시판<p>
-<% } else if(boardType.equals("photo")) { %>
-					<img src="../images/space/sub04_title.gif" alt="사진게시판" class="con_title" />
-					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;사진게시판<p>
-<% } %>	
-					
-					
+					<img src="../images/space/<%= imgPath %>" alt="<%= secondTitle %>" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린공간&nbsp;>&nbsp;<%= secondTitle %><p>
 				</div>
 				<div>
 	
@@ -58,39 +47,12 @@ String boardType = request.getParameter("boardType");
 					</div>
 					<div class="">
 						<!-- 게시판리스트부분 -->
-						<table class="table table-bordered table-hover">
-							<colgroup>
-								<col width="80px"/>
-								<col width="*"/>
-								<col width="120px"/>
-								<col width="120px"/>
-								<col width="80px"/>
-<% if(boardType.equals("photo")) { %>
-								<col width="50px"/>
-<% } %>
-							</colgroup>
-							<thead>
-								<tr class="success">
-									<th class="text-center">번호</th>
-									<th class="text-center">제목</th>
-									<th class="text-center">작성자</th>
-									<th class="text-center">작성일</th>
-									<th class="text-center">조회수</th>
-<% if(boardType.equals("photo")) { %>	
-									<th class="text-center">첨부</th>	
-<% } %>
-								</tr>
-							</thead>
-							<tbody>
+						<ul class="clearfix" style="padding:0;width:100%;">
 <%
 //컬렉션에 입력된 데이터가 없는지 확인한다. 
 if (boardLists.isEmpty()) {
 %>
-								<tr>
-						            <td colspan="6" align="center">
-						                등록된 게시물이 없습니다^^*
-						            </td>
-						        </tr>
+							<li>등록된 게시물이 없음</li>
 <%
 } else {
 	// 출력할 게시물이 있는 경우에는 확장 for문으로 List컬렉션에 저장된 레코드의 갯수만큼 반복하여 출력
@@ -103,23 +65,22 @@ if (boardLists.isEmpty()) {
     	
     	virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
 %>
-								<!-- 리스트반복 -->
-								<tr>
-									<td class="text-center"><%= virtualNum %></td>
-									<td class="text-left"><a style="text-decoration:none; display:inline-block;width:359;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" href="listBoard_view.jsp?boardType=<%= boardType %>&idx=<%= dto.getIdx() %>"><%= dto.getTitle() %></a></td>
-									<td class="text-center"><%= dto.getId() %></td>
-									<td class="text-center"><%= dto.getPostdate() %></td>
-									<td class="text-center"><%= dto.getVisitcount() %></td>
-<% if (dto.getOfile().isEmpty()) { %>
-									<td class="text-center"><a href="">[Down]</a></td>
-<% } %>
-								</tr>
+						<!-- 리스트반복 -->
+						
+							<li style="float:left;width:25%;padding-bottom:15px;">
+								<div style="margin:0 8px;">
+									<a href="listBoard_view.jsp?boardType=<%= boardType %>&idx=<%= dto.getIdx() %>" style="text-decoration:none;">
+										<img style="width:100%;height:137px;object-fit:cover;" src="../Uploads/<%= dto.getSfile() %>" alt="<%= dto.getOfile() %>" />
+										<span style="display:block;padding-top:5px;text-decoration:none;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;font-size:18px;font-weight:bold;"><%= dto.getTitle() %></span>
+										<span style="display:block;font-size:15px;"><%= dto.getId() %></span>
+									</a>
+								</div>
+							</li>
 <%
     }
 }
 %>
-							</tbody>
-						</table>
+						</ul>
 					</div>
 					<div class="bottom_wrap">
 						<div class="pagenation_wrap">
@@ -138,14 +99,27 @@ if (boardLists.isEmpty()) {
 							</ul>	
 						</div>
 <%
-if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin") && boardType.equals("notice")){
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin")){
 %>
 						<div class="button_wrap">
 							<!-- 각종 버튼 부분 -->
 							<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
 						</div>
 <%
-}else if(session.getAttribute("UserId")!= null && session.getAttribute("Account")!= null && boardType.equals("free")){
+} 
+%>
+<%
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("free")){
+%>
+	<div class="button_wrap">
+		<!-- 각종 버튼 부분 -->
+		<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
+	</div>
+<%
+}
+%>
+<%
+if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("photo")){
 %>
 	<div class="button_wrap">
 		<!-- 각종 버튼 부분 -->

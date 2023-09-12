@@ -18,11 +18,12 @@ BoardDAO dao = new BoardDAO();
 dto = dao.selectView(idx);
 
 String sessionId = (String) session.getAttribute("UserId");
+String sessionAccount = (String) session.getAttribute("Account");
 
 int delResult = 0;
 
 //세션아이디와 게시물의 아이디가 일치하면 작성자 본인이므로...
-if (sessionId.equals(dto.getId())){
+if (sessionId.equals(dto.getId()) || sessionAccount.equals("admin")){
 	// 게시판 유형가져오기
 	dto.getBoardType();
 	// 게시물을 삭제한다.

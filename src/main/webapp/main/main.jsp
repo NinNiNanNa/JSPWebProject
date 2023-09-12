@@ -100,7 +100,7 @@ if(session.getAttribute("UserId")==null) {
 				</div>
 			</div>
 			<div class="main_con_center">
-				<p class="main_title"><img src="../images/main_title02.gif" alt="공지사항 NOTICE" /><a href="/space/sub01.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<p class="main_title"><img src="../images/main_title02.gif" alt="공지사항 NOTICE" /><a href="../space/listBoard_list.jsp?boardType=notice&idx=${row.idx }"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
 				<!-- 공지사항 게시물4개 -->
 				<ul class="main_board_list">
 				<c:forEach items="${ notice }" var="row">
@@ -110,7 +110,7 @@ if(session.getAttribute("UserId")==null) {
 				</ul>
 			</div>
 			<div class="main_con_right">
-				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="/space/sub03.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<p class="main_title"><img src="../images/main_title03.gif" alt="자유게시판 FREE BOARD" /><a href="../space/listBoard_list.jsp?boardType=free&idx=${row.idx }"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
 				<!-- 자유게시판 게시물4개 -->
 				<ul class="main_board_list">
 				<c:forEach items="${ free }" var="row">
@@ -220,44 +220,19 @@ if(session.getAttribute("UserId")==null) {
 				</div>
 			</div>
 			<div class="main_con_right">
-				<p class="main_title"><img src="../images/main_title06.gif" alt="사진게시판 PHOTO BOARD" /><a href="/space/sub04.jsp"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
-				<ul class="main_photo_list">
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
+				<p class="main_title"><img src="../images/main_title06.gif" alt="사진게시판 PHOTO BOARD" /><a href="../space/photoBoard_list.jsp?boardType=photo&idx=${row.idx }"><img src="../images/more.gif" alt="more" class="more_btn" /></a></p>
+				<!-- 사진게시판 게시물6개 -->
+				<ul class="clearfix" style="width:100%;list-style:none;">
+				<c:forEach items="${ photo }" var="row">
+					<li style="float:left;width:33.333%;">
+						<div style="margin:5px;">
+							<a href="../space/listBoard_view.jsp?boardType=photo&idx=${row.idx }" style="display:block;">
+								<img style="width:100%;height:65px;object-fit:cover;" src="../Uploads/${row.sfile }" alt="" />
+								<span style="display:block;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${row.title }</span>
+							</a>
+						</div>
 					</li>
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
-					</li>
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
-					</li>
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
-					</li>
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
-					</li>
-					<li>
-						<dl>
-							<dt><a href=""><img src="../images/g_img.gif" /></a></dt>
-							<dd><a href="">마포 구립 장애인...</a></dd>
-						</dl>
-					</li>
+				</c:forEach>	
 				</ul>
 			</div>
 		</div>

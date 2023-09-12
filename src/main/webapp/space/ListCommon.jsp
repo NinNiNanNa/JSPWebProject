@@ -33,7 +33,12 @@ int totalCount = dao.selectCount(param);
 /***************************** #paging관련 코드 추가 start# ********************************/
 
 // web.xml에 설정한 컨텍스트 초기화 파라미터를 읽어옴
-int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+int pageSize;
+if(boardType.equals("photo")){
+	pageSize = 16;
+} else {
+	pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+}
 int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
 
 /* 

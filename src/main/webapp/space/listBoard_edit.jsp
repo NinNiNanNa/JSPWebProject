@@ -11,7 +11,7 @@
 String idx = request.getParameter("idx");
 // DAO객체 생성 및 DB연결
 BoardDAO dao = new BoardDAO();
-// 기존 게시물의 내용을 읽어온다.
+// 기존 게시물의 내용을 읽어온다.   
 BoardDTO dto = dao.selectView(idx);
 // 세션영역에 저장된 회원 아이디를 가져와서 문자열로 변환한다.
 String sessionId = session.getAttribute("UserId").toString();
@@ -97,7 +97,7 @@ function validateForm(form) {
 							<textarea rows="10" name="content" class="form-control"><%= dto.getContent().replace("<br/>", "\n") %></textarea>
 						</td>
 					</tr>
-<% if (boardType.equals("info")) { %>
+<% if (boardType.equals("photo") || boardType.equals("info")) { %>
 					<tr>
 						<th class="text-center" 
 							style="vertical-align:middle;">첨부파일</th>
@@ -109,13 +109,28 @@ function validateForm(form) {
 				</tbody>
 				</table>
 				
+<%
+if(session.getAttribute("UserId")!= null && boardType.equals("photo")){
+%>
 				<div class="groupbutton_wrap" style="">
 					<!-- 각종 버튼 부분 -->
 					
 					<button type="submit" class="btn btn-outline-success btn-sm">작성완료</button>
 					<button type="reset" class="btn btn-outline-danger btn-sm">Reset</button>
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='photoBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
+				</div>
+<% 
+} else {
+%>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
+					<button type="submit" class="btn btn-outline-success btn-sm">전송하기</button>
+					<button type="reset" class="btn btn-outline-danger btn-sm">Reset</button>
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_list.jsp?boardType=<%= boardType %>';">목록보기</button>
 				</div>
+<%
+}
+%>
 				</form> 
 
 				</div>

@@ -101,7 +101,8 @@ if (boardLists.isEmpty()) {
 									<td class="text-center"><%= dto.getVisitcount() %></td>
 <% if (boardType.equals("info") && dto.getOfile()!=null) { %>
 									<td class="text-center"><a href="./DownloadProcess.jsp?ofile=<%= dto.getOfile() %>&sfile=<%= dto.getSfile() %>&idx=<%= dto.getIdx() %>"><img width="20" src="../images/space/download.png" alt="" /></a></td>
-<% } else { %>
+<% } %> 
+<% if (boardType.equals("info") && dto.getOfile()==null) { %>
 									<td class="text-center"></td>
 <% } %>
 								</tr>
