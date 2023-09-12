@@ -28,6 +28,10 @@ dao.close();
 <body>
 <div id="wrap">
 	<%@ include file="../include/top.jsp"%>
+	
+	<div id="main_visual" style="margin-left:140px">
+	<a href="../product/sub01.jsp"><img src="../images/main_image_01.jpg" /></a><a href="../product/sub01_02.jsp"><img src="../images/main_image_02.jpg" /></a><a href="../product/sub01_03.jsp"><img src="../images/main_image_03.jpg" /></a><a href="../product/sub02.jsp"><img src="../images/main_image_04.jpg" /></a>
+	</div>
 
 	<div class="main_contents">
 	
