@@ -11,62 +11,68 @@
 @import url("../css/common.css");
 @import url("../css/main.css");
 @import url("../css/sub.css");
+@import url("../css/admin_main.css");
 </style>
+<!-- 부트스트랩 5 CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<center>
+<div id="wrap">
+	<%@ include file="../include/top.jsp"%>
 
-	<div id="wrap">
-		<%@ include file="../include/top.jsp"%>
-
-		<div class="main_contents" style="width:100%;height:600px;">
-		
-		게시판 작성은 기존꺼 쓸거임<br />
-		[추가] 한화면에 다뿌릴예정 - 회원관리리스트, 블루클리닝 견적의뢰리스트, 체험학습신청리스트 필요
-		<div class="row">
-			<!-- 게시판리스트부분 -->
-			<table class="table table-bordered table-hover">
-			<colgroup>
-				<col width="80px"/>
-				<col width="*"/>
-				<col width="120px"/>
-				<col width="120px"/>
-				<col width="80px"/>
-				<col width="50px"/>
-			</colgroup>
-			
-			<thead>
-			<tr class="success">
-				<th class="text-center">번호</th>
-				<th class="text-left">제목</th>
-				<th class="text-center">작성자</th>
-				<th class="text-center">작성일</th>
-				<th class="text-center">조회수</th>
-				<th class="text-center">첨부</th>
-			</tr>
-			</thead>
-			
-			<tbody>
-			<!-- 리스트반복 -->
-			<tr>
-				<td class="text-center">번호</td>
-				<td class="text-left"><a href="sub01_view.jsp">제목</a></td>
-				<td class="text-center">작성자</td>
-				<td class="text-center">작성일</td>
-				<td class="text-center">조회수</td>
-				<td class="text-center">첨부</td>
-			</tr>
-			</tbody>
-			</table>
-		</div> 
-		
-		</div>
-			
-		<%@ include file="../include/quick.jsp"%>
-	</div>
-
-	<%@ include file="../include/footer.jsp"%>
+	<div class="main_contents">
 	
-</center>
+	<h2 class="adminMain_title">회원관리</h2>
+	<div class="">
+		<!-- 게시판리스트부분 -->
+		<table class="table table-bordered table-hover">
+		<colgroup>
+			<col width="80px"/>
+			<col width="*"/>
+			<col width="120px"/>
+			<col width="120px"/>
+			<col width="80px"/>
+			<col width="50px"/>
+		</colgroup>
+		
+		<thead>
+		<tr class="success">
+			<th class="text-center">아이디</th>
+			<th class="text-left">비밀번호</th>
+			<th class="text-center">이름</th>
+			<th class="text-center">전화번호</th>
+			<th class="text-center">휴대전화</th>
+			<th class="text-center">이메일</th>
+			<th class="text-center">이메일수신</th>
+			<th class="text-center">우편번호</th>
+			<th class="text-center">기본주소</th>
+			<th class="text-center">상세주소</th>
+			<th class="text-center">가입일</th>
+			<th class="text-center">계정</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		<!-- 리스트반복 -->
+		<tr>
+			<td class="text-center">번호</td>
+			<td class="text-left"><a href="sub01_view.jsp">제목</a></td>
+			<td class="text-center">작성자</td>
+			<td class="text-center">작성일</td>
+			<td class="text-center">조회수</td>
+			<td class="text-center">첨부</td>
+		</tr>
+		</tbody>
+		</table>
+	</div> 
+	
+	</div>
+		
+	<%@ include file="../include/quick.jsp"%>
+</div>
+
+<%@ include file="../include/footer.jsp"%>
+	
 </body>
 </html>
