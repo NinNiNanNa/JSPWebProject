@@ -1,12 +1,15 @@
 package main;
 
 import java.io.IOException;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import membership.MemberDAO;
+import membership.MemberDTO;
 
 @WebServlet("/admin/adminMain.do")
 public class AdminMainCtrl extends HttpServlet {
@@ -14,6 +17,7 @@ public class AdminMainCtrl extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		// View로 포워드
 		req.getRequestDispatcher("../admin/admin_main.jsp").forward(req, resp);
 	}

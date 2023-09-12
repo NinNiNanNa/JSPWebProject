@@ -67,6 +67,8 @@ public class BoardPage {
         return pagingStr;
     }
     
+    
+    
     // 페이징 이미지
     public static String pagingImg(int totalCount, int pageSize, int blockPage,
             int pageNum, String reqUrl) {

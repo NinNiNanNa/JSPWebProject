@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="./TopTitleCommon.jsp" %>
+<%@ include file="../include/TopTitleCommon.jsp" %>
 <%@ include file="./ListCommon.jsp" %>
 <%
 //System.out.println("(listBoard_list.jsp)boardType=" + boardType);
@@ -142,10 +142,10 @@ if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equa
 <%
 if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("free")){
 %>
-	<div class="button_wrap">
-		<!-- 각종 버튼 부분 -->
-		<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
-	</div>
+						<div class="button_wrap">
+							<!-- 각종 버튼 부분 -->
+							<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='listBoard_write.jsp?boardType=<%= boardType %>';">글쓰기</button>
+						</div>
 <%
 }
 %>

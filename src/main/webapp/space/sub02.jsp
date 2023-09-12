@@ -36,7 +36,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 
 %>
     
-<%@ include file="./TopTitleCommon.jsp" %>
+<%@ include file="../include/TopTitleCommon.jsp" %>
 <%@ include file="../include/global_head.jsp" %>
 
 <style TYPE="text/css">

@@ -1,7 +1,15 @@
+<%@page import="membership.MemberDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="membership.MemberDAO"%>
 <%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+// 회원관리
+MemberDAO dao = new MemberDAO();
+List<MemberDTO> users = dao.usersAccount();
+dao.close();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,26 +36,24 @@
 		<!-- 게시판리스트부분 -->
 		<table class="table table-bordered table-hover">
 		<colgroup>
-			<col width="80px"/>
+			<col width="100px"/>
+			<col width="100px"/>
+			<col width="100px"/>
+			<col width="120px"/>
+			<col width="120px"/>
 			<col width="*"/>
-			<col width="120px"/>
-			<col width="120px"/>
-			<col width="80px"/>
-			<col width="50px"/>
+			<col width="100px"/>
+			<col width="100px"/>
 		</colgroup>
 		
 		<thead>
 		<tr class="success">
 			<th class="text-center">아이디</th>
-			<th class="text-left">비밀번호</th>
+			<th class="text-center">비밀번호</th>
 			<th class="text-center">이름</th>
 			<th class="text-center">전화번호</th>
 			<th class="text-center">휴대전화</th>
 			<th class="text-center">이메일</th>
-			<th class="text-center">이메일수신</th>
-			<th class="text-center">우편번호</th>
-			<th class="text-center">기본주소</th>
-			<th class="text-center">상세주소</th>
 			<th class="text-center">가입일</th>
 			<th class="text-center">계정</th>
 		</tr>
@@ -55,14 +61,18 @@
 		
 		<tbody>
 		<!-- 리스트반복 -->
+<% for(MemberDTO dto : users){ %>
 		<tr>
-			<td class="text-center">번호</td>
-			<td class="text-left"><a href="sub01_view.jsp">제목</a></td>
-			<td class="text-center">작성자</td>
-			<td class="text-center">작성일</td>
-			<td class="text-center">조회수</td>
-			<td class="text-center">첨부</td>
+			<td class="text-center"><%= dto.getId() %></td>
+			<td class="text-center"><%= dto.getPass() %></td>
+			<td class="text-center"><%= dto.getName() %></td>
+			<td class="text-center"><%= dto.getTel() %></td>
+			<td class="text-center"><%= dto.getMobile() %></td>
+			<td class="text-center"><%= dto.getEmail() %></td>
+			<td class="text-center"><%= dto.getRegidate() %></td>
+			<td class="text-center"><%= dto.getAccount() %></td>
 		</tr>
+<% } %>
 		</tbody>
 		</table>
 	</div> 

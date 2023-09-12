@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="./TopTitleCommon.jsp" %>
+<%@ include file="../include/TopTitleCommon.jsp" %>
 <%@ include file="../include/global_head.jsp" %>
 
 

@@ -1,7 +1,9 @@
 package membership;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import common.JDBConnect;
-import jakarta.servlet.ServletContext;
 
 public class MemberDAO extends JDBConnect {
 
@@ -202,6 +204,42 @@ public class MemberDAO extends JDBConnect {
 		}
 		
 		return result;
+	}
+	
+	// 관리자계정에서 회원리스트 출력하기 위한 메서드 정의
+	public List<MemberDTO> usersAccount() {
+		List<MemberDTO> users = new ArrayList<MemberDTO>();
+		
+		String query = "SELECT * FROM members WHERE account='user'";
+		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				MemberDTO dto = new MemberDTO();
+
+				dto.setId(rs.getString(1));
+				dto.setPass(rs.getString(2));
+				dto.setName(rs.getString(3));
+				dto.setTel(rs.getString(4));
+				dto.setMobile(rs.getString(5));
+				dto.setEmail(rs.getString(6));
+				dto.setOpen_email(rs.getString(7));
+				dto.setZipcode(rs.getString(8));
+				dto.setAddr1(rs.getString(9));
+				dto.setAddr2(rs.getString(10));
+				dto.setRegidate(rs.getDate(11));
+				dto.setAccount(rs.getString(12));
+				
+				users.add(dto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("회원리스트 조회 중 예외발생");
+			e.printStackTrace();
+		}
+		
+		return users;
 	}
 
 }

@@ -83,7 +83,8 @@ public class BoardDAO extends JDBConnect {
 				dto.setOfile(rs.getString(6));
 				dto.setSfile(rs.getString(7));
 				dto.setDowncount(rs.getInt(8));
-				dto.setVisitcount(rs.getShort(9));
+				dto.setVisitcount(rs.getInt(9));
+				dto.setBoardType(rs.getString(10));
 				
 				// List에 DTO 추가
 				board.add(dto);

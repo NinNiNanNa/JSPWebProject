@@ -29,5 +29,13 @@ switch (boardType) {
 		imgPath = "sub05_title.gif";
 		secondTitle = "정보자료실";
 	    break;
+	case "empinfo":
+		imgPath = "sub01_title.gif";
+		secondTitle = "직원자료실";
+	    break;
+	case "guardian":
+		imgPath = "sub02_title.gif";
+		secondTitle = "보호자 게시판";
+	    break;
 }
 %>

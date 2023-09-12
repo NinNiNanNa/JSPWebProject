@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       
-<%@ include file="./TopTitleCommon.jsp" %>
+<%@ include file="../include/TopTitleCommon.jsp" %>
 <%@ include file="./ListCommon.jsp" %>
 <%
 //System.out.println("(listBoard_list.jsp)boardType=" + boardType);

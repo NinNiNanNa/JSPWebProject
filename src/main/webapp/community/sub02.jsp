@@ -4,7 +4,6 @@
 
 
  <body>
-	<center>
 	<div id="wrap">
 		<%@ include file="../include/top.jsp" %>
 
@@ -17,7 +16,7 @@
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-					<img src="../images/community/sub02_title.gif" alt="보호자 게시판" class="con_title" />
+					<img src="../images/community/sub02_ title.gif" alt="보호자 게시판" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;보호자 게시판<p>
 				</div>
 			</div>
@@ -27,6 +26,5 @@
 	
 
 	<%@ include file="../include/footer.jsp" %>
-	</center>
  </body>
 </html>
