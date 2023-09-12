@@ -78,23 +78,23 @@ function deletePost() {
 							</c:if>
 						</td>
 					</tr>
+					<c:if test="${ not empty dto.ofile }">
 					<tr>
 						<th class="text-center" style="vertical-align:middle;">첨부파일</th>
 						<td colspan="3">
-							<c:if test="${ not empty dto.ofile }">
 							${ dto.ofile }
 							<a href="../community/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">[다운로드]</a>
-							</c:if>
 						</td>
 				        <th class="text-center" style="vertical-align:middle;">다운로드수</th>
 				        <td class="text-center" >${ dto.downcount }</td>
 					</tr>
+					</c:if>
 				</tbody>
 				</table>
 				
 				<div class="groupbutton_wrap" style="">
 					<!-- 각종 버튼 부분 -->
-					<button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='../community/edit.do?boardType=${ param.boardType }&idx=${ param.idx }';">수정하기</button>
+					<button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='../community/edit.do?boardType=${ param.boardType }&idx=${ dto.idx }';">수정하기</button>
 					<button type="button" class="btn btn-outline-danger btn-sm" onclick="deletePost();">삭제하기</button>	
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='../community/list.do?boardType=${ param.boardType }';">목록보기</button>
 				</div>

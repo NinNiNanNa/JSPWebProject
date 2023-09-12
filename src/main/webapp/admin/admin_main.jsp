@@ -56,6 +56,7 @@ dao.close();
 			<th class="text-center">이메일</th>
 			<th class="text-center">가입일</th>
 			<th class="text-center">계정</th>
+			<th class="text-center">권한</th>
 		</tr>
 		</thead>
 		
@@ -71,10 +72,17 @@ dao.close();
 			<td class="text-center"><%= dto.getEmail() %></td>
 			<td class="text-center"><%= dto.getRegidate() %></td>
 			<td class="text-center"><%= dto.getAccount() %></td>
+			<td class="text-center">
+				<input type="checkbox" id="account" name="account" onchange="" value="">
+			</td>
 		</tr>
 <% } %>
 		</tbody>
 		</table>
+		<div class="button_wrap" style="text-align:right;">
+			<!-- 각종 버튼 부분 -->
+			<button type="button" class="btn btn-outline-secondary btn-sm">변경</button>
+		</div>
 	</div> 
 	
 	</div>
