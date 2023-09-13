@@ -9,6 +9,7 @@
 
 
 <script>
+/*
 // 게시물 삭제를 위한 Javascript 함수
 function deletePost() {
 	// confirm() 함수는 대화창에서 '예'를 누를때 true가 반환된다.
@@ -18,18 +19,19 @@ function deletePost() {
         var form = document.writeFrm;      
     	// 전송방식과 전송할 경로를 지정한다.
         form.method = "post"; 
-        form.action = "./DeleteProcess.jsp"; 
+        form.action = "../community/delete.do?boardType=${ param.boardType }&idx=${ dto.idx }"; 
         // submit() 함수를 통해 폼값을 전송한다.
         form.submit();         
         // <form>태그 하위의 hidden박스에 설정된 일련번호를 전송한다.
     }
 }
+*/
 </script>
  <body>
 	<div id="wrap">
 		<%@ include file="../include/top.jsp" %>
 
-		<img src="../images/community/sub_image.jpg" id="main_visual" />
+		<img src="../images/community/sub_image.jpg" id="main_visual" style="margin-left:140px;" />
 
 		<div class="contents_box">
 			<div class="left_contents">
@@ -91,13 +93,33 @@ function deletePost() {
 					</c:if>
 				</tbody>
 				</table>
-				
+<% if (session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("admin")) { %>	
 				<div class="groupbutton_wrap" style="">
 					<!-- 각종 버튼 부분 -->
 					<button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='../community/edit.do?boardType=${ param.boardType }&idx=${ dto.idx }';">수정하기</button>
-					<button type="button" class="btn btn-outline-danger btn-sm" onclick="deletePost();">삭제하기</button>	
+					<button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='../community/delete.do?boardType=${ param.boardType }&idx=${ dto.idx }';">삭제하기</button>	
 					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='../community/list.do?boardType=${ param.boardType }';">목록보기</button>
 				</div>
+<% } %>
+<% if (session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user") && boardType.equals("guardian")) { %>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
+					<button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='../community/edit.do?boardType=${ param.boardType }&idx=${ dto.idx }';">수정하기</button>
+					<button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='../community/delete.do?boardType=${ param.boardType }&idx=${ dto.idx }';">삭제하기</button>	
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='../community/list.do?boardType=${ param.boardType }';">목록보기</button>
+				</div>
+<% } else if(session.getAttribute("UserId")!= null && session.getAttribute("Account").equals("user")){ %>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='../community/list.do?boardType=${ param.boardType }';">목록보기</button>
+				</div>
+<% } %>
+<% if (session.getAttribute("UserId") == null){ %>
+				<div class="groupbutton_wrap" style="">
+					<!-- 각종 버튼 부분 -->
+					<button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='../community/list.do?boardType=${ param.boardType }';">목록보기</button>
+				</div>
+<% } %>
 
 				</form> 
 

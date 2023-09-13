@@ -72,7 +72,8 @@ if (boardLists.isEmpty()) {
 									<a href="listBoard_view.jsp?boardType=<%= boardType %>&idx=<%= dto.getIdx() %>" style="text-decoration:none;">
 										<img style="width:100%;height:137px;object-fit:cover;" src="../Uploads/<%= dto.getSfile() %>" alt="<%= dto.getOfile() %>" />
 										<span style="display:block;padding-top:5px;text-decoration:none;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;font-size:18px;font-weight:bold;"><%= dto.getTitle() %></span>
-										<span style="display:block;font-size:15px;"><%= dto.getId() %></span>
+										<span style="display:block;font-size:15px;padding:2px 0;"><%= dto.getId() %></span>
+										<span style="display:block;font-size:15px;"><%= dto.getPostdate() %></span>
 									</a>
 								</div>
 							</li>

@@ -37,11 +37,11 @@ function validateForm(form) {
 				</div>
 				<div>
 				
-					<form  name="writeFrm" method="post" action="../community/edit.do" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+					<form  name="writeFrm" method="post" action="../community/edit.do?boardType=${ param.boardType }&idx=${ dto.idx }" enctype="multipart/form-data" onsubmit="return validateForm(this);">
 					<input type="hidden" name="num" value="${ dto.idx }" />
 					<input type="hidden" name="prevOfile" value="${ dto.ofile }" />
 					<input type="hidden" name="prevSfile" value="${ dto.sfile }" />
-					<input type="hidden" name="tname"  value="${ param.boardType }"/>
+					<input type="hidden" name="boardType" value="${ param.boardType }" />
 					<table class="table table-bordered">
 					<colgroup>
 						<col width="20%"/>
@@ -76,7 +76,7 @@ function validateForm(form) {
 						</tr>
 					</tbody>
 					</table>
-					
+
 					<div class="groupbutton_wrap" style="">
 						<!-- 각종 버튼 부분 -->
 						<button type="submit" class="btn btn-outline-success btn-sm">전송하기</button>

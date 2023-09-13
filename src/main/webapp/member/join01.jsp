@@ -490,7 +490,11 @@ function agreeCheck(){
 				회사의 개인정보보호정책은 관련 법률 및 고시의 변경 또는 내부 운영방침의 변경에 따라 변경될 수 있습니다. 회사의 개인정보보호정책이 수정될 경우 변경된 사항은 홈페이지를 통하여 공지합니다. <br />
 				</div>
 
-				<p style="text-align:center; margin-bottom:20px;"><input type="checkbox" id="agreement1" name="agreement1" value="">이용약관과 개인정보취급방침에 동의합니다.</p>
+				<p style="text-align:center; margin-bottom:20px;">
+					<label for="agreement1">
+						<input type="checkbox" id="agreement1" name="agreement1" value="">이용약관과 개인정보취급방침에 동의합니다.
+					</label>
+				</p>
 
 				<p style="text-align:center; margin-bottom:20px">
 					<input type="image" onclick="agreeCheck();" src="../images/btn01.gif" alt="확인">&nbsp;&nbsp;

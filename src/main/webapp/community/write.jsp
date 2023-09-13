@@ -38,6 +38,7 @@ function validateForm(form) {
 				<div>
 				
 					<form  name="writeFrm" method="post" action="../community/write.do?boardType=${ param.boardType }" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+					<input type="hidden" name="boardType" value="${ param.boardType }" />
 					<table class="table table-bordered">
 					<colgroup>
 						<col width="20%"/>

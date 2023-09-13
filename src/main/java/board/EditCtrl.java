@@ -18,6 +18,7 @@ public class EditCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String boardType = req.getParameter("boardType");
 		String idx = req.getParameter("idx");
+		//System.out.println("EditCtrl"+boardType);
 		
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = dao.selectView(idx);
@@ -48,11 +49,13 @@ public class EditCtrl extends HttpServlet {
 		String content = req.getParameter("content");
 		String prevOfile = req.getParameter("prevOfile");
 		String prevSfile = req.getParameter("prevSfile");
+		String boardType = req.getParameter("boardType");
 		
 		BoardDTO dto = new BoardDTO();
 		dto.setIdx(idx);
 		dto.setTitle(title);
 		dto.setContent(content);
+		dto.setBoardType(boardType);
 
 		//원본 파일명과 저장된 파일 이름 설정
 		if (originalFileName != "") {
@@ -82,7 +85,7 @@ public class EditCtrl extends HttpServlet {
 
 		if (editResult == 1){
 			// 게시물이 수정되면 목록으로 이동한다.
-			JSFunction.alertLocation(resp, "게시물 수정이 완료되었습니다.", "../community/view.do?boardType="+dto.getBoardType()+"&idx="+dto.getIdx());
+			JSFunction.alertLocation(resp, "게시물 수정이 완료되었습니다.", "../community/view.do?boardType="+boardType+"&idx="+idx);
 		}
 		else {
 			// 수정에 실패하면 뒤로 이동한다.
